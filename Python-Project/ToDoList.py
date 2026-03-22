@@ -1,4 +1,4 @@
-tasks=[]
+tasks= []
 def show_tasks(tasks):
     if not tasks:
         print("No task available.")
@@ -28,12 +28,12 @@ while True:
         else:
             show_tasks(tasks)
             try:
-                num=int(input("Enter your choice to remove task: "))
+                task_num=int(input("Enter your choice to remove task: "))
             except:
                 print("Enter a valid choice.")
                 continue
-            if num>=1 and num<=len(tasks):
-                tasks.pop(num-1)
+            if task_num>=1 and task_num<=len(tasks):
+                tasks.pop(task_num-1)
                 print("Task removed Successfully.")
             else:
                 print("Invalid choice!")
