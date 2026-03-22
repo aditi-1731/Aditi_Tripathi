@@ -1,10 +1,19 @@
-tasks= []
+tasks = []
+
+try:
+    with open("tasks.txt","r") as file:
+        for line in file:
+            tasks.append(line.strip())
+except:
+    pass
+    
 def show_tasks(tasks):
     if not tasks:
         print("No task available.")
     else:
         for i in range(len(tasks)):
             print(f"{i+1}. {tasks[i]}")
+            
 while True:
     print("-------MENU-------")
     print("1.Add task")
@@ -16,12 +25,18 @@ while True:
     except:
         print("Enter a valid number.")
         continue
+
     if choice ==1:
         task = input("Enter your task: ")
-        tasks.append(task)
+        tasks.append(task) 
+        
+        with open("tasks.txt","a") as file:
+            file.write(task+ "\n")
         print("Task added Successfully.")
+
     elif choice ==2:
         show_tasks(tasks)
+
     elif choice==3:
         if not tasks:
             print("No task available to be removed.")
@@ -34,11 +49,16 @@ while True:
                 continue
             if task_num>=1 and task_num<=len(tasks):
                 tasks.pop(task_num-1)
+                with open("tasks.txt","w") as file:
+                    for t in tasks:
+                        file.write(t+"\n")
                 print("Task removed Successfully.")
             else:
                 print("Invalid choice!")
+
     elif choice==4:
         print("Exited successfully.")
         break 
+
     else:
         print("invalid Choice!")
